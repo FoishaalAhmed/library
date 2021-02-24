@@ -114,6 +114,14 @@
 
             </li>
 
+            <li class="@if(request()->is('admin/queries') || request()->is('admin/queries/*')) {{'active'}} @endif">
+
+                <a href="{{route('queries.index')}}">
+                <i class="fa fa-question-circle"></i> <span>{{__('Queries')}}</span>
+                </a>
+
+            </li>
+
             <li class="treeview @if(request()->is('admin/authors') || request()->is('admin/authors/create') || request()->is('admin/authors/*') ) {{'active'}} @endif">
                 <a href="#">
                 <i class="fa fa-user-secret"></i>

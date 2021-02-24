@@ -5,7 +5,13 @@
     Route::group( ['namespace' => 'Frontend'], function () {
         
         Route::get('/', 'HomeController@index');
-        Route::get('/contact', 'ContactController@index');
+        Route::get('/administrator', 'HomeController@administrator')->name('administrator');
+        Route::get('/author', 'HomeController@author')->name('author');
+        Route::get('/video-gallery', 'HomeController@video')->name('video');
+        Route::get('/photo-gallery', 'HomeController@photo')->name('photo');
+        Route::get('/contact', 'ContactController@index')->name('front.contact');
+        Route::post('/query', 'ContactController@query')->name('send.query');
+        Route::get('/book', 'BookController@index')->name('book');
     });
 
     Route::get('/home', 'HomeController@index')->name('home');

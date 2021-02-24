@@ -2,6 +2,12 @@ body {
   overflow-x: hidden;
 }
 
+.page-item.active .page-link {
+
+    background-color: #008080 !important;
+    border-color: #008080 !important;
+}
+
 /* *************dropdown menubar************** */
 .navbar {
   padding: 10px !important;
@@ -157,7 +163,7 @@ ul.navbar-nav .nav-item:after {
 
 .input_2 {
   border: 2px solid rgb(218, 49, 49);
-  width: 30%;
+  width: 36%;
   margin-top: 25px;
   padding: 5px;
 }

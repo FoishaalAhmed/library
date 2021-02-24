@@ -15,6 +15,11 @@ class CreateQueriesTable extends Migration
     {
         Schema::create('queries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone', 15);
+            $table->string('subject');
+            $table->mediumText('message');
             $table->timestamps();
         });
     }

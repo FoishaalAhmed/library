@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="{{asset('public/frontend/css/owl/owl.theme.min.css')}}">
 	<link rel="stylesheet" href="{{asset('public/frontend/css/owl/owl.transitions.css')}}">
 	<link rel="stylesheet" href="{{asset('public/frontend/css/img_gallery/baguetteBox.min.css')}}">
+	<link rel="stylesheet" href="{{asset('public/frontend/css/log.css')}}">
 	<!--image gallery -->
 
 <body onload="startTime()">
@@ -32,7 +33,7 @@
 					<div>
 						<span style="margin: auto; display: table; text-align: center;" class="fas fa-sign-in-alt bt_1">
 							<a style=" text-decoration: none; color: white; margin-left: 5px;"
-								href="log-registration.html">Login / My
+								href="{{route('login')}}">Login / My
 								MRSG</a></span>
 					</div>
 				</div>
@@ -73,36 +74,15 @@
 		</button>
 		<div class="container ">
 			<ul class="navbar-nav collapse navbar-collapse" id="collapsibleNavbar">
-				<span style="margin-right: -15px; margin-bottom: 7px;" class="fa fa-home"></span>
+				<span style="margin-right: -3px; margin-bottom: 7px;" class="fa fa-home"></span>
 				<li class="nav-item active dropdown">
-					<a class="nav-link " href="index.html">All Books</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Another Books 1</a></li>
-						<li><a href="#">Another Books 2</a></li>
-						<li><a href="#">Another Books 3</a></li>
-						<li><a href="#">Another Books 4</a></li>
-						<li><a href="#">Another Books 5</a></li>
-					</ul>
+					<a class="nav-link @if(request()->is('book')) {{'active'}} @endif" href="{{route('book')}}">All Books</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link " href="Books-by-Aurthor.html">Books by Aurthor’s</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Another Books 1</a></li>
-						<li><a href="#">Another Books 2</a></li>
-						<li><a href="#">Another Books 3</a></li>
-						<li><a href="#">Another Books 4</a></li>
-						<li><a href="#">Another Books 5</a></li>
-					</ul>
+					<a class="nav-link @if(request()->is('author')) {{'active'}} @endif" href="{{route('author')}}">Aurthor’s</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link " href="Administration.html">Administration </a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Another Books 1</a></li>
-						<li><a href="#">Another Books 2</a></li>
-						<li><a href="#">Another Books 3</a></li>
-						<li><a href="#">Another Books 4</a></li>
-						<li><a href="#">Another Books 5</a></li>
-					</ul>
+					<a class="nav-link @if(request()->is('administrator')) {{'active'}} @endif" href="{{route('administrator')}}">Administration </a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link " href="Publications.html">Publications</a>
@@ -126,16 +106,15 @@
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link " href="Top-Members.html">Top Members</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Another Books 1</a></li>
-						<li><a href="#">Another Books 2</a></li>
-						<li><a href="#">Another Books 3</a></li>
-						<li><a href="#">Another Books 4</a></li>
-						<li><a href="#">Another Books 5</a></li>
-					</ul>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link @if(request()->is('photo-gallery')) {{'active'}} @endif" href="{{route('photo')}}">Photo Gallery</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link @if(request()->is('video-gallery')) {{'active'}} @endif" href="{{route('video')}}">Video Gallery</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="contact-us.html">Contact us</a>
+					<a class="nav-link @if(request()->is('contact')) {{'active'}} @endif" href="{{route('front.contact')}}">Contact us</a>
 				</li>
 			</ul>
 		</div>
@@ -239,6 +218,11 @@
 	<script src="{{asset('public/frontend/js/main.js')}}"></script>
 	<script src="{{asset('public/frontend/js/fontawesome.js')}}"></script>
 	<script src="{{asset('public/frontend/js/owl.carousel.min.js')}}"></script>
+
+	@section('footer')
+		
+	@show
+
 </body>
 
 </html>
