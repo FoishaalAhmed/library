@@ -10,8 +10,16 @@
         Route::get('/video-gallery', 'HomeController@video')->name('video');
         Route::get('/photo-gallery', 'HomeController@photo')->name('photo');
         Route::get('/contact', 'ContactController@index')->name('front.contact');
+        Route::get('/top-member', 'ContactController@member')->name('top.member');
+        Route::get('/search', 'ContactController@search')->name('search');
         Route::post('/query', 'ContactController@query')->name('send.query');
         Route::get('/book', 'BookController@index')->name('book');
+        Route::post('/book-filter', 'BookController@filter')->name('filter.books');
+        Route::get('/education-book', 'BookController@education')->name('education');
+        Route::get('/book/{id}/{name}', 'BookController@detail')->name('book.detail');
+        Route::get('/news-detail/{id}/{title}', 'BookController@notice_details')->name('notice.detail');
+        Route::get('/author-books/{id}/{name}', 'BookController@author_books')->name('author.books');
+        Route::post('/book-borrow', 'BookController@borrow')->name('book.borrow');
     });
 
     Route::get('/home', 'HomeController@index')->name('home');

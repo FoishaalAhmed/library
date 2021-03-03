@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Administrator;
+use App\Model\Author;
+use App\Model\Book;
+use App\Model\BorrowBook;
 use App\Model\Contact;
 use App\Model\Query;
 use Illuminate\Http\Request;
@@ -53,5 +57,47 @@ class ContactController extends Controller
         );
 
         echo json_encode($output);
+    }
+
+    public function member()
+    {
+        $borrow_book = new BorrowBook();
+        $members = $borrow_book->getTopMember();
+
+        return view('frontend.member', compact('members'));
+    }
+
+    public function search(Request $request)
+    {
+        $authors        = null;
+        $administrators = null;
+        $books          = null;
+
+        $search_option = $request->search_option;
+        $search_text   = strtolower($request->search_text);
+
+        if($search_option == 'All') {
+            
+            $authors = Author::whereRaw('lower(authors.name) like (?)', ["%{$search_text}%"])->select('authors.id', 'authors.name', 'authors.photo', 'authors.birth_date', 'authors.death_date')->get();
+
+            $administrators = Administrator::whereRaw('lower(administrators.name) like (?)', ["%{$search_text}%"])->select('administrators.position', 'administrators.name', 'administrators.photo', 'administrators.company','administrators.facebook', 'administrators.twitter', 'administrators.linkedin')->orderBy('priority', 'desc')->get();
+            
+            $books = Book::whereRaw('lower(books.name) like (?)', ["%{$search_text}%"])->select('books.id', 'books.name', 'books.photo')->orderBy('date', 'desc')->get();
+
+        } elseif($search_option == 'Books') {
+
+            $books = Book::whereRaw('lower(books.name) like (?)', ["%{$search_text}%"])->select('books.id', 'books.name', 'books.photo')->orderBy('date', 'desc')->get();
+
+        } elseif ($search_option == 'Author') {
+
+            $authors = Author::whereRaw('lower(authors.name) like (?)', ["%{$search_text}%"])->select('authors.id', 'authors.name', 'authors.photo', 'authors.birth_date', 'authors.death_date')->get();
+
+        } else {
+
+            $administrators = Administrator::whereRaw('lower(administrators.name) like (?)', ["%{$search_text}%"])->select('administrators.position', 'administrators.name', 'administrators.photo', 'administrators.company', 'administrators.facebook', 'administrators.twitter', 'administrators.linkedin')->orderBy('priority', 'desc')->get();
+        }
+
+        return view('frontend.search', compact('authors', 'administrators', 'books'));
+
     }
 }

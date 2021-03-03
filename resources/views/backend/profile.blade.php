@@ -13,7 +13,7 @@
                         Profile Picture
                     </div>
                     <div class="box-body box-profile">
-                        <form action="{{route('profile', app()->getLocale())}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('profile')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <img class="profile-user-img img-responsive img-circle" src="{{asset($user_info->photo)}}" alt="User profile picture" style="width: 112px; height: 112px;" id="user_photo">
                             <h3 class="profile-username text-center">{{$user_info->name}}</h3>
@@ -39,7 +39,7 @@
                     <div class="tab-content">
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="timeline">
-                            <form action="{{route('password.change', app()->getLocale())}}" method="POST" class="form-horizontal">
+                            <form action="{{route('password.change')}}" method="POST" class="form-horizontal">
                                 @csrf
                                 <div class="form-group">
                                     <label for="inputName" class="col-sm-2 control-label">Old Password</label>
@@ -62,7 +62,7 @@
                         </div>
                         <!-- /.tab-pane -->
                         <div class="tab-pane active" id="settings">
-                            <form action="{{route('profile.update', app()->getLocale())}}" class="form-horizontal" method="POST">
+                            <form action="{{route('profile.update')}}" class="form-horizontal" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="inputName" class="col-sm-2 control-label">Name</label>

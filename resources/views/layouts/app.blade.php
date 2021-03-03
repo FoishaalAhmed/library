@@ -16,6 +16,12 @@
 	<link rel="stylesheet" href="{{asset('public/frontend/css/log.css')}}">
 	<!--image gallery -->
 
+	@section('header')
+		
+	@show
+
+</head>
+
 <body onload="startTime()">
 	<!-- *********head-1-start*********** -->
 	<div class="head-1">
@@ -48,21 +54,17 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<select class="input_2">
-					<option value="INR">INR</option>
-					<option value="JMD">JMD</option>
-					<option value="KES">KES</option>
-					<option value="KGS">KGS</option>
-					<option value="MUR">MUR</option>
-					<option value="MVR">MVR</option>
-					<option value="MWK">MWK</option>
-					<option value="MXN">MXN</option>
-					<option value="MYR">MYR</option>
-					<option value="NAD">NAD</option>
-					<option value="RUB">RUB</option>
-				</select>
-				<input class="input_1" placeholder="Search here..." list="brow"> <button
-					class="fa fa-search btn_1"></button>
+				<form action="{{route('search')}}" method="get">
+					@csrf
+					<select class="input_2" name="search_option">
+						<option value="All">All</option>
+						<option value="Books">Books</option>
+						<option value="Author">Author</option>
+						<option value="Administrator">Administrator</option>
+					</select>
+					<input class="input_1" name="search_text" placeholder="Search here..." list="brow"> <button
+						class="fa fa-search btn_1" type="submit"></button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -84,7 +86,7 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link @if(request()->is('administrator')) {{'active'}} @endif" href="{{route('administrator')}}">Administration </a>
 				</li>
-				<li class="nav-item dropdown">
+				{{-- <li class="nav-item dropdown">
 					<a class="nav-link " href="Publications.html">Publications</a>
 					<ul class="dropdown-menu">
 						<li><a href="#">Another Books 1</a></li>
@@ -93,19 +95,12 @@
 						<li><a href="#">Another Books 4</a></li>
 						<li><a href="#">Another Books 5</a></li>
 					</ul>
+				</li> --}}
+				<li class="nav-item dropdown">
+					<a class="nav-link " href="{{route('education')}}">Education</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link " href="Education.html">Education</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Another Books 1</a></li>
-						<li><a href="#">Another Books 2</a></li>
-						<li><a href="#">Another Books 3</a></li>
-						<li><a href="#">Another Books 4</a></li>
-						<li><a href="#">Another Books 5</a></li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link " href="Top-Members.html">Top Members</a>
+					<a class="nav-link " href="{{route('top.member')}}">Top Members</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link @if(request()->is('photo-gallery')) {{'active'}} @endif" href="{{route('photo')}}">Photo Gallery</a>
@@ -129,7 +124,9 @@
 			<div class="tcontainer">
 				<div class="ticker-wrap">
 					<div class="ticker-move">
-						<div class="ticker-item"> <a href="http://">Poor state of poverty alleviation.</a> </div>
+						@foreach ($notices as $notice)
+							<div class="ticker-item"> <a href="{{route('notice.detail', [$notice->id, strtolower(str_replace(' ', '-', $notice->title))])}}">{{$notice->title}}</a> </div>
+						@endforeach
 					</div>
 				</div>
 			</div>

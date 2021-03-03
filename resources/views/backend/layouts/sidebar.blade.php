@@ -61,7 +61,15 @@
                 </ul>
             </li>
 
-            <li class="treeview @if(request()->is('admin/books') || request()->is('admin/books/create') || request()->is('admin/books/*') ) {{'active'}} @endif">
+            <li class="@if(request()->is('admin/borrows')) {{'active'}} @endif">
+
+                <a href="{{route('borrows.index')}}">
+                <i class="fa fa-book"></i> <span>{{__('Borrow Books')}}</span>
+                </a>
+
+            </li>
+
+            <li class="treeview @if(request()->is('admin/books') || request()->is('admin/books/create') || request()->is('admin/stocks') || request()->is('admin/books/*') ) {{'active'}} @endif">
                 <a href="#">
                 <i class="fa fa-book"></i>
                 <span>{{__('books')}}</span>
@@ -77,6 +85,31 @@
 
                     <li class="@if(request()->is('admin/books')) {{'active'}} @endif">
                         <a href="{{route('books.index')}}"><i class="fa fa-list"></i> {{__('Books')}}</a>
+                    </li>
+
+                    <li class="@if(request()->is('admin/stocks')) {{'active'}} @endif">
+                        <a href="{{route('stocks.index')}}"><i class="fa fa-list"></i> {{__('Stocks')}}</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview @if(request()->is('admin/notices') || request()->is('admin/notices/create') || request()->is('admin/notices/*') ) {{'active'}} @endif">
+                <a href="#">
+                <i class="fa fa-bell"></i>
+                <span>{{__('Notices')}}</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="@if(request()->is('admin/notices/create')) {{'active'}} @endif">
+                        <a href="{{route('notices.create')}}"><i class="fa fa-plus"></i> {{__('New Notice')}}</a>
+                    </li>
+
+                    <li class="@if(request()->is('admin/notices')) {{'active'}} @endif">
+                        <a href="{{route('notices.index')}}"><i class="fa fa-list"></i> {{__('Notices')}}</a>
                     </li>
 
                 </ul>

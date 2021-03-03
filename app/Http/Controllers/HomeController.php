@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Book;
 use Illuminate\Http\Request;
 use Auth;
+use Session;
 
 class HomeController extends Controller
 {
@@ -30,7 +32,19 @@ class HomeController extends Controller
 
         } else {
 
-            echo 'User';
+            $book_id = Session::get('book_id');
+
+            if ($book_id) {
+
+                $book = Book::findOrFail($book_id);
+
+                return redirect()->route('book.detail', [$book_id, strtolower(str_replace(' ', '-', $book->name))]);
+
+            } else {
+
+                return redirect()->route('user.dashboard');
+            }
+            
         }
     }
 }

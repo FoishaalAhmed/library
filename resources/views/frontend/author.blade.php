@@ -13,7 +13,7 @@
                         <img class="card-img-top" style="height: 200px;" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/oslo.jpg" alt="Bologna">
                         <div class="card-body text-center">
                             <img class="avatar " style="height: 100px; border-radius: 50%; width: 100px;" src="{{asset($item->photo)}}" alt="Bologna">
-                            <h4 class="card-title">{{$item->name}}</h4>
+                            <h4 class="card-title"><a href="{{route('author.books', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}">{{$item->name}}</a></h4>
                             <h6 class="card-subtitle mb-2 text-muted">Date Of Birth {{date('d M, Y', strtotime($item->birth_date))}}</h6>
                             <p class="card-text">Date Of Death {{date('d M, Y', strtotime($item->death_date))}}</p>
                         </div>
@@ -33,7 +33,7 @@
                         <img class="card-img-top" style="height: 200px;" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/oslo.jpg" alt="Bologna">
                         <div class="card-body text-center">
                             <img class="avatar " style="height: 100px; border-radius: 50%; width: 100px;" src="{{asset($item->photo)}}" alt="Bologna">
-                            <h4 class="card-title">{{$item->name}}</h4>
+                            <h4 class="card-title"><a href="{{route('author.books', [$item->id, strtolower(str_replace(' ', '-', $item->name))])}}">{{$item->name}}</a></h4>
                             <h6 class="card-subtitle mb-2 text-muted">Date Of Birth {{date('d M, Y', strtotime($item->birth_date))}}</h6>
                             <p class="card-text">Date Of Death {{date('d M, Y', strtotime($item->death_date))}}</p>
                         </div>

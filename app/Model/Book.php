@@ -34,6 +34,17 @@ class Book extends Model
         return $books;
     }
 
+
+    public function get_book_details($id)
+    {
+       $books = $this::leftJoin('authors', 'books.author_id' , '=', 'authors.id')
+                        ->leftJoin('categories', 'books.category_id', '=', 'categories.id')
+                        ->where('books.id', $id)
+                        ->select('books.*', 'authors.name as author', 'categories.name as category')
+                        ->firstOrFail();
+        return $books;
+    }
+
     public function store_book($request)
     {
         $image = $request->file('photo');
@@ -104,5 +115,24 @@ class Book extends Model
         $delete_book        =  $this::where('id', $id)->delete();
 
         $delete_book ? Session::flash('message', 'Book Deleted Successfully!') : Session::flash('message', 'Book Delete Failed!');
+    }
+
+    public function get_book_filtered_books($request)
+    {
+        $query = $this::leftJoin('ratings', 'books.id', '=', 'ratings.book_id');
+
+        if($request->category != '') $query->where('books.category_id', $request->category);
+        if($request->author != '') $query->where('books.author_id', $request->author);
+        if($request->suitable_for != '') $query->where('books.suitable_for', $request->suitable_for);
+        if($request->publish_year != '') $query->where('books.publish_year', $request->publish_year);
+        if($request->rating != '') $query->where('ratings.rating', '>', $request->rating);
+
+        $query->groupBy('ratings.book_id');
+        $query->orderBy('ratings.rating', 'desc');
+
+        $books = $query->select('books.*')->get();
+
+        return $books;
+
     }
 }

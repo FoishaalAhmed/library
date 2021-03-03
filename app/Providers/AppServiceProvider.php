@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Model\Contact;
+use App\Model\Notice;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $contact = Contact::select('fb', 'twitter', 'linkedin', 'instagram')->first();
-        View::share('contact', $contact);
+        $notices = Notice::select('id', 'title')->orderBy('date', 'desc')->take(5)->get();
+        View::share(['contact' => $contact, 'notices' => $notices]);
     }
 }
