@@ -47,4 +47,9 @@ class HomeController extends Controller
         $authors = Author::orderBy('id', 'desc')->paginate(20);
         return view('frontend.author', compact('authors'));
     }
+
+    public function support()
+    {
+        return view('frontend.support');
+    }
 }

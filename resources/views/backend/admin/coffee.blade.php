@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title', 'Category')
+@section('title', 'Coffee Table')
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
@@ -8,7 +8,7 @@
             <small>Version 2.0</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('categories.index')}}"><i class="fa fa-group"></i> Category</a></li>
+            <li><a href="{{route('categories.index')}}"><i class="fa fa-group"></i> Coffee Table</a></li>
         </ol>
     </section>
     <div class="content">
@@ -17,9 +17,9 @@
                 <!-- Content Header (user header) -->
                 <div class="box box-teal box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Category</h3>
+                        <h3 class="box-title">Coffee Table</h3>
                         <div class="box-tools pull-right">
-                        	<a href="#" class="btn btn-sm bg-green" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> New Category</a>
+                        	<a href="#" class="btn btn-sm bg-green" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> New Coffee Table</a>
                         </div>		
                     </div>
                     <!-- /.box-header -->
@@ -29,33 +29,28 @@
                             <thead>
                                 <tr>
                                     <th style="width: 15%">Sl.</th>
-                                    <th style="width: 70%">Name</th>
+                                    <th style="width: 70%">Table Number</th>
                                     <th style="width: 15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $key => $category)
+                                @foreach ($coffees as $key => $coffee)
                                 <tr>
                                     <td>{{$loop->index + 1}}</td>
-                                    <td>{{$category->name}}</td>
+                                    <td>{{$coffee->table_number}}</td>
                                     <td>
-                                        @if ($category->id != 1)
-                                            
-                                        
-                                    	<a class="btn btn-sm bg-teal" href="#" data-toggle="modal" data-target="#edit-modal" data-id="{{$category->id}}" data-name="{{$category->name}}"><span class="glyphicon glyphicon-edit"></span></a>
+                                    	<a class="btn btn-sm bg-teal" href="#" data-toggle="modal" data-target="#edit-modal" data-id="{{$coffee->id}}" data-table_number="{{$coffee->table_number}}"><span class="glyphicon glyphicon-edit"></span></a>
 
-                                    	<form action="{{route('categories.destroy',$category->id)}}" method="post" style="display: none;" id="delete-form-{{ $category->id}}">
+                                    	<form action="{{route('tables.destroy',$coffee->id)}}" method="post" style="display: none;" id="delete-form-{{ $coffee->id}}">
                                             @csrf
                                             {{method_field('DELETE')}}
                                         </form>
                                         <a class="btn btn-sm bg-red" href="" onclick="if(confirm('Are You Sure To Delete?')){
                                             event.preventDefault();
-                                            getElementById('delete-form-{{ $category->id}}').submit();
+                                            getElementById('delete-form-{{ $coffee->id}}').submit();
                                             }else{
                                             event.preventDefault();
                                             }"><span class="glyphicon glyphicon-trash"></span></a>
-                                        @endif
-                                        
                                     </td>
                                 </tr>
                                 @endforeach
@@ -76,15 +71,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">New Category</h4>
+          <h4 class="modal-title">New Coffee Table</h4>
         </div>
         <div class="modal-body">
-            <form action="{{route('categories.store')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+            <form action="{{route('tables.store')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label class="control-label col-md-2">Name</label>
-                    <div class="col-sm-9">
-                        <input name="name" placeholder="name" class="form-control" required="" type="text" value="{{ old('name') }}">
+                    <label class="control-label col-md-3">Table Number</label>
+                    <div class="col-sm-8">
+                        <input name="table_number" placeholder="Table Number" class="form-control" required="" type="text" value="{{ old('table_number') }}" autocomplete="off">
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -109,16 +104,16 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Category Update</h4>
+          <h4 class="modal-title">Coffee Table Update</h4>
         </div>
         <div class="modal-body">
             <form id="edit-form" method="POST" class="form-horizontal" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label class="control-label col-md-2">Name</label>
-                    <div class="col-sm-9">
-                        <input name="name" id="name" placeholder="name" class="form-control" required="" type="text" value="{{ old('name') }}">
+                    <label class="control-label col-md-3">Table Number</label>
+                    <div class="col-sm-8">
+                        <input name="table_number" id="table_number" placeholder="Table Number" class="form-control" required="" type="text" value="{{ old('table_number') }}" autocomplete="off">
                         <input type="hidden" name="id" id="id">
                     </div>
                 </div>
@@ -143,13 +138,13 @@
 
         var e             = $(event.relatedTarget);
         var id            = e.data('id');
-        var name          = e.data('name');
+        var table_number  = e.data('table_number');
 
-        var action = '{{URL::to('admin/categories/update')}}';
+        var action = '{{URL::to('admin/tables/update')}}';
  
         $("#edit-form").attr('action', action);
         $("#id").val(id);
-        $("#name").val(name);
+        $("#table_number").val(table_number);
 
     });
 </script>

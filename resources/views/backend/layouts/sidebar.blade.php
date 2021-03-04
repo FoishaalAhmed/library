@@ -69,6 +69,27 @@
 
             </li>
 
+            <li class="treeview @if(request()->is('admin/tables') || request()->is('admin/bookings')) {{'active'}} @endif">
+                <a href="#">
+                <i class="fa fa-coffee"></i>
+                <span>{{__('Coffee table')}}</span>
+                <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="@if(request()->is('admin/tables')) {{'active'}} @endif">
+                        <a href="{{route('tables.index')}}"><i class="fa fa-list"></i> {{__('New Author')}}</a>
+                    </li>
+
+                    <li class="@if(request()->is('admin/book-table')) {{'active'}} @endif">
+                        <a href="{{route('booking.index')}}"><i class="fa fa-list"></i> {{__('Table Booking')}}</a>
+                    </li>
+
+                </ul>
+            </li>
+
             <li class="treeview @if(request()->is('admin/books') || request()->is('admin/books/create') || request()->is('admin/stocks') || request()->is('admin/books/*') ) {{'active'}} @endif">
                 <a href="#">
                 <i class="fa fa-book"></i>

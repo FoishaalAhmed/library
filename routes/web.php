@@ -5,6 +5,7 @@
     Route::group( ['namespace' => 'Frontend'], function () {
         
         Route::get('/', 'HomeController@index');
+        Route::get('/support', 'HomeController@support')->name('support');
         Route::get('/administrator', 'HomeController@administrator')->name('administrator');
         Route::get('/author', 'HomeController@author')->name('author');
         Route::get('/video-gallery', 'HomeController@video')->name('video');
@@ -20,6 +21,10 @@
         Route::get('/news-detail/{id}/{title}', 'BookController@notice_details')->name('notice.detail');
         Route::get('/author-books/{id}/{name}', 'BookController@author_books')->name('author.books');
         Route::post('/book-borrow', 'BookController@borrow')->name('book.borrow');
+
+        Route::get('/coffee-table', 'CoffeeTableController@index')->name('coffee.index');
+        Route::post('/coffee-table', 'CoffeeTableController@coffee')->name('coffee.book');
+        Route::post('/send-support', 'CoffeeTableController@support')->name('send.support');
     });
 
     Route::get('/home', 'HomeController@index')->name('home');

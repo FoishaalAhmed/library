@@ -12,6 +12,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['ad
         'books'          => 'BookController',
         'sliders'        => 'SliderController',
         'galleries'      => 'GalleryController',
+        'tables'         => 'CoffeeTableController',
     ]);
 
     Route::get('/stocks', 'StockController@index')->name('stocks.index');
@@ -26,4 +27,9 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['ad
     Route::get('/borrows', 'BorrowBookController@index')->name('borrows.index');
     Route::get('/borrows/{id}/id/{status}/status', 'BorrowBookController@status')->name('borrows.status');
     /** Book Borrow Route End **/
+
+    /** Table Books Route Start **/
+    Route::get('/book-table', 'BookTableController@index')->name('booking.index');
+    Route::get('/book-table/{id}/id/{status}/status', 'BookTableController@status')->name('booking.status');
+    /** Table Books Route End **/
 });

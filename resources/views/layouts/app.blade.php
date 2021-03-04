@@ -31,7 +31,7 @@
 					<div class="bt_1" id="txt"></div>
 				</div>
 				<div class="col-sm-6" style="padding: 5px;padding-left: 20px;">
-					<span class="bt_1"><a style="text-decoration: none; color: white;" href="MRSG-Support.html">BECOME A
+					<span class="bt_1"><a style="text-decoration: none; color: white;" href="{{route('support')}}">BECOME A
 							SUPPORTER
 						</a></span>
 				</div>
