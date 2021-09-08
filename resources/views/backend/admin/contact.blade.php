@@ -95,8 +95,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <label>{{__('LinkedIn')}}</label>
-                                        <input name="linkedin" placeholder="{{__('LinkedIn')}}" class="form-control" type="text" value="{{ $contact->linkedin }}" autocomplete="off">
+                                        <label>{{__('Youtube')}}</label>
+                                        <input name="linkedin" placeholder="{{__('Youtube')}}" class="form-control" type="text" value="{{ $contact->linkedin }}" autocomplete="off">
                                     </div>
                                 </div>
                             </div>

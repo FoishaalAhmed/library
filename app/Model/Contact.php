@@ -21,10 +21,10 @@ class Contact extends Model
         'mobile'  => 'required|numeric',
         'map'     => 'nullable|string',
         'address' => 'nullable|string',
-        'fb'      => 'nullable|string|max:255',
-        'twitter' => 'nullable|string|max:255',
-        'linkedin' => 'nullable|string|max:255',
-        'instagram' => 'nullable|string|max:255',
+        'fb'      => 'nullable|string|max:555',
+        'twitter' => 'nullable|string|max:555',
+        'linkedin' => 'nullable|string|max:555',
+        'instagram' => 'nullable|string|max:555',
     ];
 
     public function update_contact($request, $id)

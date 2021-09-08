@@ -20,6 +20,10 @@ class CreateContactsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('mobile');
             $table->string('fax')->nullable();
+            $table->string('facebook', 555)->nullable();
+            $table->string('twitter', 555)->nullable();
+            $table->string('linkedin', 555)->nullable();
+            $table->string('instagram', 555)->nullable();
             $table->mediumText('map')->nullable();
             $table->mediumText('address')->nullable();
             $table->timestamps();

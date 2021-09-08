@@ -221,7 +221,7 @@
             
             <li class="treeview @if(request()->is('admin/pages') || request()->is('admin/pages/create') || request()->is('admin/pages/*') ) {{'active'}} @endif">
                 <a href="#">
-                <i class="fa fa-user-secret"></i>
+                <i class="fa fa-file"></i>
                 <span>{{__('Pages')}}</span>
                 <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>

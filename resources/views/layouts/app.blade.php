@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>MRSG - @yield('title')</title>
+	<title>MRML - @yield('title')</title>
 	<link rel="stylesheet" href="{{asset('public/frontend/css/main.css')}}">
 	<link rel="stylesheet" href="{{asset('public/frontend/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="icon" href="{{asset('public/frontend/img/logo-1.png')}}" type="image/gif" sizes="16x16">
@@ -40,7 +40,7 @@
 						<span style="margin: auto; display: table; text-align: center;" class="fas fa-sign-in-alt bt_1">
 							<a style=" text-decoration: none; color: white; margin-left: 5px;"
 								href="{{route('login')}}">Login / My
-								MRSG</a></span>
+								MRML</a></span>
 					</div>
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<div>
-					<img style="width: 65%;" src="{{asset('public/frontend/img/logo-1.png')}}" alt="logo-1">
+					<a href="{{URL::to('/')}}"> <img style="width: 65%;" src="{{asset('public/frontend/img/logo-1.png')}}" alt="logo-1"> </a>
 				</div>
 			</div>
 			<div class="col-sm-6">
@@ -76,14 +76,14 @@
 		</button>
 		<div class="container ">
 			<ul class="navbar-nav collapse navbar-collapse" id="collapsibleNavbar">
-				<span style="margin-right: -3px; margin-bottom: 7px;" class="fa fa-home"></span>
-				<li class="nav-item active dropdown">
+				<a href="{{URL::to('/')}}"> <span style="margin-right: -3px; margin-bottom: 7px;" class="fa fa-home"></span> </a>
+				<li class="nav-item">
 					<a class="nav-link @if(request()->is('book')) {{'active'}} @endif" href="{{route('book')}}">All Books</a>
 				</li>
-				<li class="nav-item dropdown">
+				<li class="nav-item">
 					<a class="nav-link @if(request()->is('author')) {{'active'}} @endif" href="{{route('author')}}">Aurthor’s</a>
 				</li>
-				<li class="nav-item dropdown">
+				<li class="nav-item">
 					<a class="nav-link @if(request()->is('administrator')) {{'active'}} @endif" href="{{route('administrator')}}">Administration </a>
 				</li>
 				{{-- <li class="nav-item dropdown">
@@ -96,16 +96,19 @@
 						<li><a href="#">Another Books 5</a></li>
 					</ul>
 				</li> --}}
-				<li class="nav-item dropdown">
+				<li class="nav-item">
 					<a class="nav-link " href="{{route('education')}}">Education</a>
 				</li>
-				<li class="nav-item dropdown">
+				<li class="nav-item">
 					<a class="nav-link " href="{{route('top.member')}}">Top Members</a>
 				</li>
-				<li class="nav-item dropdown">
+				<li class="nav-item">
+					<a class="nav-link @if(request()->is('coffee-table')) {{'active'}} @endif" href="{{route('coffee.index')}}">Coffe Shop</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link @if(request()->is('photo-gallery')) {{'active'}} @endif" href="{{route('photo')}}">Photo Gallery</a>
 				</li>
-				<li class="nav-item dropdown">
+				<li class="nav-item">
 					<a class="nav-link @if(request()->is('video-gallery')) {{'active'}} @endif" href="{{route('video')}}">Video Gallery</a>
 				</li>
 				<li class="nav-item">
@@ -200,7 +203,7 @@
 			<ul class="social_footer_ul">
 				<li><a target="_blank" href="https://{{$contact->fb}}"><i class="fab fa-facebook-f"></i></a></li>
 				<li><a target="_blank" href="https://{{$contact->twitter}}"><i class="fab fa-twitter"></i></a></li>
-				<li><a target="_blank" href="https://{{$contact->linkedin}}"><i class="fab fa-linkedin"></i></a></li>
+				<li><a target="_blank" href="https://{{$contact->linkedin}}"><i class="fab fa-youtube"></i></a></li>
 				<li><a target="_blank" href="https://{{$contact->instagram}}"><i class="fab fa-instagram"></i></a></li>
 			</ul>
 		</div>

@@ -3,6 +3,7 @@ Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['ad
 
     Route::resources([
 
+        'backgrounds'    => 'AuthorBackgroundController',
         'users'          => 'UserController',
         'authors'        => 'AuthorController',
         'administrators' => 'AdministratorController',
